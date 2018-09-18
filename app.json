@@ -1,0 +1,8 @@
+{
+  "name": "Papers",
+  "description": "Papers memory app",
+  "repository": "https://github.com/dbirman/leitner",
+  // "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["leitner","papers"],
+  // "image": "heroku/nodejs"
+}

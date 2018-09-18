@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+
+<!-- Code created from scratch by me! -->
+
+<html>
+<head>
+
+  <title>Papers</title>
+  <meta name="descrption" content="A memory app for remembering papers.">
+  <meta http-equiv="Cache-control" content="public">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> -->
+
+  <!-- <meta name="theme-color" content="#F4FFC1"/> -->
+  <meta charset="utf-8" />
+  <!-- <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
+  <!-- <link href='mpb_min.css' rel='stylesheet' /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style> 
+  body {
+    background-color: #F4F4F4;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  /* cyrillic-ext */
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNa7lujVj9_mf.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  }
+  /* cyrillic */
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qPK7lujVj9_mf.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+  /* greek-ext */
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNK7lujVj9_mf.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF;
+  }
+  /* greek */
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qO67lujVj9_mf.woff2) format('woff2');
+    unicode-range: U+0370-03FF;
+  }
+  /* vietnamese */
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qN67lujVj9_mf.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+  }
+  /* latin-ext */
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qNq7lujVj9_mf.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  .center {
+    text-align:center;
+  }
+
+  p {
+    color:#4d4f53;
+  }
+
+  a {
+    color:#820000;
+  }
+
+  h1,h2,h3 {
+    color:#2e2d29;
+  }
+
+  h4 {
+    color:#8c1515;
+    margin:1vh;
+    padding:0;
+    font-size:3vh;
+  }
+
+  h5 {
+    color:#2e2d29;
+    margin:0;
+    padding:0;
+    font-size:2vh;
+
+  }
+
+  tr,td {
+    /*border-bottom: 1px solid black;*/
+    border-top: 1px solid black;
+    border-collapse: collapse;
+  } ​
+
+  .info-open {
+    background-color: #F9F6EF;
+    margin:auto;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    max-width:60vw;
+    min-height:10vh;
+    border-radius: 25px;
+    border: 1px solid;
+    border-color: #b6b1a9;
+  }
+
+  .info {
+    background-color: #F9F6EF;
+    margin:auto;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    max-width:60vw;
+    min-height:10vh;
+    border-radius: 25px;
+    border: 1px solid;
+    border-color: #b6b1a9;
+  }
+  .info:hover {
+    background-color:#dad7cb;
+    cursor:pointer;
+  }
+  .info_left {
+    order:1;
+    width:18vw;
+    margin:1vw;
+    float:left;
+    position:relative;
+  }
+  .info_right {
+    order:2;
+    width:38vw;
+    margin:1vw;
+    float:right;
+    position:relative;
+  }
+  .info_open {
+    order:1;
+    width:60vw;
+    position:relative;
+  }
+
+  .info_img {
+    object-fit: cover;
+    height:14vh;
+    width:14vh;
+    position: relative;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius:7vh;
+  }
+
+  .restrict80 {
+    max-width:80vw;
+    margin:auto;
+  }
+
+
+  /* The Modal (background) */
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .modal h1 {
+    color:#8c1515;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    /*background-color: #F5F5F5;*/
+    background-color: #F9F6EF;
+      margin: 10% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80vw; /* Could be more or less, depending on screen size */
+  }
+  .modal-content.sixty {
+    min-height:60vh;
+  }
+  .modal-content.fifty {
+    min-height:50vh;
+  }
+
+  .modal-content-big {
+    /*background-color: #fefefe;*/
+    /*margin: 0% auto;  15% from the top and centered */
+   /* padding: 0px;
+    border: 1px solid #888;*/
+    /*width: 80vw;  */  
+  }
+
+  .modal-content-big.eighty {
+    min-height:80vh;
+  }
+
+  .modal-content-info {
+    /*max-width:60vw;
+    float:left;*/
+  }
+
+  .modal-content-img {
+    /*min-width:20vw;
+    float:right;*/
+  }
+
+  .modal-img {
+    /*display:inline-block;*/
+    width:30vmin;
+    float:right;
+    margin:1vw;
+  }
+  
+  .close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 5vh;
+    /*position: absolute;*/
+    float:right;
+    cursor:pointer;
+    z-index: 999;
+    margin:1vmin;
+    /*right: -12px;*/
+    text-align: center;
+    top: -5vh;
+    width: 5vh;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 5vh;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+  }
+
+  .close:hover { background: #8c1515; }
+
+
+  /* Add styles to the form container */
+  .container {
+    position: relative;
+    right: 0;
+    margin: 20px;
+    max-width: 300px;
+    padding: 16px;
+    background-color: white;
+  }
+
+  /* Full-width input fields */
+    input[type=text], input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  /* Set a style for the submit button */
+  .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+
+  .btn:hover {
+    opacity: 1;
+  }
+  </style>
+
+<body>
+
+
+<div class="center">
+
+  <div id="title" class="restrict80">
+    <div style="display:table;margin:auto">
+      <h1 style="display:table-cell;vertical-align:middle">Papers a.k.a. My memory sucks</h1>
+    </div>
+  </div>
+
+
+  <br><hr><br>
+
+  <div id="login">
+    <form id="login-form" class="container">
+      <h1>Login</h1>
+
+      <label for="psw"><b>Code</b></label>
+      <input type="password" placeholder="enter code" name="code" required>
+
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+
+  <div style="display:none" id="cpaper">
+    paper
+  </div>
+
+  <br><hr><br>
+
+  <div style="display:none" id="responses">
+    <div style="display:table;margin:auto">
+      <div style="display:table-cell" id="resp1">
+        response 1
+      </div>
+      <div style="display:table-cell" id="resp2">
+        response 2
+      </div>
+      <div style="display:table-cell" id="resp3">
+        response 3
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+  <div>
+    <p class="copyright">&copy; <a href="https://danbirman.com">Dan Birman</a> 2018-Present . <a href="https://github.com/dbirman/leitner/" rel="noopener">Code</a></p>
+  </div>  
+</div>
+
+<script src="./socket.io/socket.io.js"></script>
+<script src="./logic.js"></script>
+
+</body>
+
+</html>
