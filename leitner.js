@@ -26,10 +26,18 @@ io.on('connection', function(socket){
   	console.log('disconnect');
   });
 
-  socket.on('request', requestData);
+  socket.on('requestTweets', function(num) {reqest(socket.id,num);});
 
-  socket.on('response', function() {procResponse(info)});
+  socket.on('response', function(info) {procResponse(info)});
 });
+
+function request(id,num) {
+
+}
+
+function procResponse(info) {
+
+}
 
 function init() {
   slog('Database startup');
