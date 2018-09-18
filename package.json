@@ -1,0 +1,30 @@
+{
+  "name": "leitner",
+  "version": "1.0.0",
+  "description": "Test code for papers memory project",
+  "main": "leitner.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.15",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node leitner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbirman/leitner.git"
+  },
+  "keywords": [
+    "leitner",
+    "memory",
+    "papers"
+  ],
+  "author": "Daniel Birman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dbirman/leitner/issues"
+  },
+  "homepage": "https://github.com/dbirman/leitner#readme"
+}
