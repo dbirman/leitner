@@ -4,9 +4,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
 
-// load user name and password
-let info = require('./pass.js');
-
 // Return files that are requested (we could filter if needed)
 app.get( '/*' , function( req, res ) {
     // this is the current file they have requested
@@ -41,8 +38,11 @@ function procResponse(info) {
 
 function init() {
   slog('Database startup');
-  mongoose.connect('mongodb://'+info.user+':'+info.pass+'@ds157742.mlab.com:57742/heroku_wt9rxshb');
-
+  if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+  } else {
+    console.log('Warning: use local environment variables to access MONGODB');
+  }
   let db = mongoose.connection;
 
   db.on('error', console.error.bind(console, 'connection error:'));
@@ -71,6 +71,7 @@ let paperSchema = new mongoose.Schema({
   journal: String,
   title: String,
   tweet: String,
+  nextdate: Number,
 });
 
 paperSchema.methods.idString = function() {
