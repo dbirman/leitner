@@ -21,6 +21,7 @@ io.on('connection', function(socket){
 
   socket.on('code', function(code){
     socket.code = code;
+    console.log(code);
   });
 
   socket.on('disconnect', function(){

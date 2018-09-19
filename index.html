@@ -184,7 +184,7 @@
   }
 
   .restrict80 {
-    max-width:80vw;
+    max-width:100vw;
     margin:auto;
   }
 
@@ -282,9 +282,8 @@
   /* Add styles to the form container */
   .container {
     position: relative;
-    right: 0;
-    margin: 20px;
-    max-width: 300px;
+    margin: 0 auto;
+    max-width: 25vw;
     padding: 16px;
     background-color: white;
   }
@@ -314,6 +313,31 @@
     opacity: 0.9;
   }
 
+  .btn.rounded {
+    background-color:#f44336;
+    width:5vw;
+    height:5vw;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 5vw;
+    text-align: center;
+    top: -5vw;
+    cursor:pointer;
+    line-height: 5vw;
+    /*position: absolute;*/
+    float:right;
+    cursor:pointer;
+    z-index: 999;
+    margin:1vmin;
+    /*right: -12px;*/ 
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+  }
+
   .btn:hover {
     opacity: 1;
   }
@@ -321,56 +345,77 @@
 
 <body>
 
-
-<div class="center">
-
-  <div id="title" class="restrict80">
-    <div style="display:table;margin:auto">
-      <h1 style="display:table-cell;vertical-align:middle">Papers a.k.a. My memory sucks</h1>
-    </div>
+<div id="title" class="restrict80">
+  <div style="position: relative;float: right;">
+    <span class="btn rounded" onclick="openModal('add-paper');">&plus;</span>
   </div>
-
-
-  <br><hr><br>
-
-  <div id="login">
-    <form id="login-form" class="container" onsubmit="return processForm();">
-      <h1>Login</h1>
-
-      <label for="code"><b>Code</b></label>
-      <input type="password" placeholder="enter code" name="code" id="pass" required>
-
-      <button class="btn" type="submit">Login</button>
-    </form>
+  <div style="display:table;margin:auto">
+    <h1 style="display:table-cell;vertical-align:middle">Papers a.k.a. My memory sucks</h1>
   </div>
-
-  <div style="display:none" id="cpaper">
-    paper
-  </div>
-
-  <br><hr><br>
-
-  <div style="display:none" id="responses">
-    <div style="display:table;margin:auto">
-      <div style="display:table-cell" id="resp1">
-        response 1
-      </div>
-      <div style="display:table-cell" id="resp2">
-        response 2
-      </div>
-      <div style="display:table-cell" id="resp3">
-        response 3
-      </div>
-    </div>
-  </div>
-
-  <br>
-  <hr>
-  <br>
-  <div>
-    <p class="copyright">&copy; <a href="https://danbirman.com">Dan Birman</a> 2018-Present . <a href="https://github.com/dbirman/leitner/" rel="noopener">Code</a></p>
-  </div>  
 </div>
+
+<div id="add-paper" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content sixty">
+    <span class="close">&times;</span>
+    <div style="min-height:40vh">
+      <form id="login-form" class="container" onsubmit="return addPaper();">
+        <h1>Add a paper</h1>
+
+        <!-- <label for="code"><b>Title</b></label> -->
+        <input type="text" placeholder="title" name="code" id="title" required>
+        <input type="text" placeholder="lastname, lastname" name="code" id="authors" required>
+        <input type="text" placeholder="year" name="code" id="year" required>
+        <input type="text" placeholder="journal" name="code" id="journal" required>
+        <input type="text" placeholder="short summary" name="code" id="tweet" required>
+
+        <button class="btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<br><hr><br>
+
+<div id="login" class="center">
+  <form id="login-form" class="container" onsubmit="return processForm();">
+    <h1>Login</h1>
+
+    <label for="code"><b>Code</b></label>
+    <input type="password" placeholder="enter code" name="code" id="pass" required>
+
+    <button class="btn" type="submit">Login</button>
+  </form>
+</div>
+
+<div style="display:none" id="cpaper" class="center">
+  paper
+</div>
+
+<br><hr><br>
+
+<div style="display:none" id="responses">
+  <div style="display:table;margin:auto">
+    <div style="display:table-cell" id="resp1">
+      response 1
+    </div>
+    <div style="display:table-cell" id="resp2">
+      response 2
+    </div>
+    <div style="display:table-cell" id="resp3">
+      response 3
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+<div class="center">
+  <p class="copyright">&copy; <a href="https://danbirman.com">Dan Birman</a> 2018-Present . <a href="https://github.com/dbirman/leitner/" rel="noopener">Code</a></p>
+</div> 
 
 <script src="./socket.io/socket.io.js"></script>
 <script src="./logic.js"></script>
