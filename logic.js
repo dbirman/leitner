@@ -1,17 +1,13 @@
 const socket = io();
 
-function processForm(e) {
-    if (e.preventDefault) e.preventDefault();
+function processForm() {
+	let code = document.getElementById("pass").value;
+	console.log(code);
+	io.emit('code',code);
 
-    /* do what you want with the form */
+	document.getElementById("login-form").style.display="none";
+	document.getElementById("cpaper").style.display="";
+	document.getElementById("responses").style.display="";
 
-    // You must return false to prevent the default form behavior
-    return false;
-}
-
-var form = document.getElementById('login-form');
-if (form.attachEvent) {
-    form.attachEvent("submit", processForm);
-} else {
-    form.addEventListener("submit", processForm);
+	return false;
 }

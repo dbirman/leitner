@@ -19,6 +19,10 @@ var connectionList = {};
 io.on('connection', function(socket){
   console.log('Connection: ID ' + socket.id);
 
+  socket.on('code', function(code){
+    socket.code = code;
+  });
+
   socket.on('disconnect', function(){
   	console.log('disconnect');
   });
@@ -41,7 +45,7 @@ function init() {
   if (process.env.MONGODB_URI) {
     mongoose.connect(process.env.MONGODB_URI);
   } else {
-    console.log('Warning: use local environment variables to access MONGODB');
+    mongoose.connect(MONGODB_URI);
   }
   let db = mongoose.connection;
 

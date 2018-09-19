@@ -8,8 +8,13 @@
   <title>Papers</title>
   <meta name="descrption" content="A memory app for remembering papers.">
   <meta http-equiv="Cache-control" content="public">
-  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
   <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> -->
 
   <!-- <meta name="theme-color" content="#F4FFC1"/> -->
@@ -329,13 +334,13 @@
   <br><hr><br>
 
   <div id="login">
-    <form id="login-form" class="container">
+    <form id="login-form" class="container" onsubmit="return processForm();">
       <h1>Login</h1>
 
-      <label for="psw"><b>Code</b></label>
-      <input type="password" placeholder="enter code" name="code" required>
+      <label for="code"><b>Code</b></label>
+      <input type="password" placeholder="enter code" name="code" id="pass" required>
 
-      <button type="submit" class="btn">Login</button>
+      <button class="btn" type="submit">Login</button>
     </form>
   </div>
 
