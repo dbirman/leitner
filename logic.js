@@ -5,7 +5,7 @@ function processForm() {
 	console.log(code);
 	socket.emit('code',code);
 
-	document.getElementById("login-form").style.display="none";
+	document.getElementById("login").style.display="none";
 	document.getElementById("cpaper").style.display="";
 	document.getElementById("responses").style.display="";
 

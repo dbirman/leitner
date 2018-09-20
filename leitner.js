@@ -31,7 +31,7 @@ io.on('connection', function(socket){
   	console.log('disconnect');
   });
 
-  socket.on('addPaper', function(info) {if (socket.loggedIn) {addPaper(info);}})
+  socket.on('addPaper', function(info) {if (socket.loggedIn) {addPaper(socket.code,info);}})
 
   socket.on('requestTweets', function(num) {request(socket.id,num);});
 
@@ -39,7 +39,7 @@ io.on('connection', function(socket){
 });
 
 function request(id,num) {
-
+  // Return all of the 
 }
 
 function procResponse(info) {
@@ -71,12 +71,13 @@ function init() {
 }
 
 let paperSchema = new mongoose.Schema({
-  id: String,
-  authors: Array,
-  year: Number,
-  journal: String,
+  id: String, // a unique identifier to avoid adding papers twice
+  code: String, // codes keep track of different collections of papers, e.g. for different projects
+  authors: Array, // an array of author names
+  year: Number, // 2018, etc
+  journal: String, // journal abbreviations are best
   title: String,
-  tweet: String,
+  tweet: String, // this is key: a summary of the paper which doesn't include identifying information
   nextdate: Number,
 });
 
@@ -110,7 +111,9 @@ paperSchema.methods.unique = function() {
 
 let Paper = mongoose.model('Paper',paperSchema);
 
-function addPaper(info) {
+function addPaper(code,info) {
+  // add the code
+  info.code = code;
   // check if this paper exists
   let ttl = info.title.replace(/\s/g,'').toLowerCase();
   info.id = info.authors[0]+info.year+'-'+ttl[0]+ttl[ttl.length-1];
