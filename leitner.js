@@ -33,17 +33,28 @@ io.on('connection', function(socket){
 
   socket.on('addPaper', function(info) {if (socket.loggedIn) {addPaper(socket.code,info);}})
 
-  socket.on('requestTweets', function(num) {request(socket.id,num);});
+  socket.on('requestTweets', function() {request(socket.id,socket.code);});
 
   socket.on('response', function(info) {procResponse(info)});
 });
 
-function request(id,num) {
-  // Return all of the 
+function request(id,code) {
+  // Get all the papers for this person's code 
+  // return the papers that need to be displayed today
+  // for each paper return three (other) "tweets" so that the user has to select the right one
+  // make sure to pass the unique identifiers for the papers
 }
 
 function procResponse(info) {
-
+  // Get a response from the user for a given paper, decide whether to repeat it sooner or later than the last time
+  Paper.find({id:info.id}, function(err,papers) {
+    if (err) {
+      console.log('An error occurred while searching for existing papers with id: ' + paper.id);
+    } else {
+      console.log('Updating dates for id: ' + paper.id);
+      papers[0].updateDate(info.success);
+    }
+  });
 }
 
 function init() {
@@ -78,6 +89,7 @@ let paperSchema = new mongoose.Schema({
   journal: String, // journal abbreviations are best
   title: String,
   tweet: String, // this is key: a summary of the paper which doesn't include identifying information
+  futuredays: Number,
   nextdate: Number,
 });
 
@@ -109,11 +121,24 @@ paperSchema.methods.unique = function() {
   });
 }
 
+paperSchema.methods.updateDate = function(success) {
+  if (success) {
+    // if they got it right, increment the future date
+    this.futuredays *= 2;
+  } else {
+    this.futuredays /= 2;
+  }
+  if (this.futuredays>128) {this.futuredays=128}
+  if (this.futuredays<1) {this.futuredays=1}
+  this.nextdate = now() + this.futuredays;
+}
+
 let Paper = mongoose.model('Paper',paperSchema);
 
 function addPaper(code,info) {
   // add the code
   info.code = code;
+  info.futuredays = 1;
   // check if this paper exists
   let ttl = info.title.replace(/\s/g,'').toLowerCase();
   info.id = info.authors[0]+info.year+'-'+ttl[0]+ttl[ttl.length-1];

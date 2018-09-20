@@ -12,6 +12,13 @@ function processForm() {
 	return false;
 }
 
+function sendResponse(id,success) {
+	info = {};
+	info.success = success;
+	info.id = id;
+	socket.emit('response',info);
+}
+
 function addPaper() {
 	let info = {};
 	info.title = document.getElementById("title").value;
