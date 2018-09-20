@@ -289,7 +289,7 @@
   }
 
   /* Full-width input fields */
-    input[type=text], input[type=password] {
+    input[type=text], input[type=password], input[type=number] {
     width: 90%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -345,7 +345,7 @@
 
 <body>
 
-<div id="title" class="restrict80">
+<div id="" class="restrict80">
   <div style="position: relative;float: right;">
     <span class="btn rounded" onclick="openModal('add-paper');">&plus;</span>
   </div>
@@ -366,7 +366,7 @@
         <!-- <label for="code"><b>Title</b></label> -->
         <input type="text" placeholder="title" name="code" id="title" required>
         <input type="text" placeholder="lastname, lastname" name="code" id="authors" required>
-        <input type="text" placeholder="year" name="code" id="year" required>
+        <input type="number" placeholder="year" name="code" id="year" required>
         <input type="text" placeholder="journal" name="code" id="journal" required>
         <input type="text" placeholder="short summary" name="code" id="tweet" required>
 

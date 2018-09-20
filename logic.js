@@ -13,8 +13,24 @@ function processForm() {
 }
 
 function addPaper() {
-	let title = document.getElementById("title").value;
+	let info = {};
+	info.title = document.getElementById("title").value;
 	document.getElementById("title").value = '';
+	let authors = document.getElementById("authors").value;
+	let authorsArray = authors.replace(/\s/g, "").split(",");
+	info.authors = authorsArray;
+	document.getElementById("authors").value = '';
+	info.year = parseInt(document.getElementById("year").value);
+	document.getElementById("year").value = '';
+	info.journal = document.getElementById("journal").value;
+	document.getElementById("journal").value = '';
+	info.tweet = document.getElementById("tweet").value;
+	document.getElementById("tweet").value = '';
+	console.log(info);
+	socket.emit('addPaper',info);
+	document.getElementById("add-paper").style.display='none';
+
+	return false;
 }
 
 

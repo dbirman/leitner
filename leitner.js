@@ -19,16 +19,21 @@ var connectionList = {};
 io.on('connection', function(socket){
   console.log('Connection: ID ' + socket.id);
 
+  socket.loggedIn = false;
+
   socket.on('code', function(code){
+    console.log('Received code: ' + code + ' from ID: ' + socket.id);
     socket.code = code;
-    console.log(code);
+    socket.loggedIn = true;
   });
 
   socket.on('disconnect', function(){
   	console.log('disconnect');
   });
 
-  socket.on('requestTweets', function(num) {reqest(socket.id,num);});
+  socket.on('addPaper', function(info) {if (socket.loggedIn) {addPaper(info);}})
+
+  socket.on('requestTweets', function(num) {request(socket.id,num);});
 
   socket.on('response', function(info) {procResponse(info)});
 });
@@ -54,16 +59,12 @@ function init() {
   db.once('open', function() {
     slog('Connection to database established');
 
-    addPaper({
-      authors:['Birman', 'Gardner'],
-      year: 2018,
-      journal:'JNeuroPhys',
-      title:'A quantitative framework for motion visibility',
-      tweet:'V1-V4 are sensitive to contrast but V3A and MT are sensitive to coherence'
-    });
-
+    slog('Listing papers in database');
     Paper.find(function(err,papers) {
-      // console.log(papers);
+      for (pi in papers) {
+        console.log(papers[pi].titleString());
+        console.log(papers[pi].nextMemoryString());
+      }
     });
 
   });
@@ -90,10 +91,15 @@ paperSchema.methods.titleString = function() {
   }
   str += this.authors[this.authors.length-1] + ' (';
   str += this.year + ')';
+  return str;
 }
 
 paperSchema.methods.tweetString = function () {
   return this.tweet;
+}
+
+paperSchema.methods.nextMemoryString = function() {
+  return 'Days until next event: ' + Math.round(this.nextdate-now());
 }
 
 paperSchema.methods.unique = function() {
@@ -106,8 +112,9 @@ let Paper = mongoose.model('Paper',paperSchema);
 
 function addPaper(info) {
   // check if this paper exists
-  let ttl = info.title.replace(/\s+/g,'').toLowerCase();
+  let ttl = info.title.replace(/\s/g,'').toLowerCase();
   info.id = info.authors[0]+info.year+'-'+ttl[0]+ttl[ttl.length-1];
+  info.nextdate = now();
   
   let paper = new Paper(info);
   // search for other papers with the identical id
@@ -120,6 +127,11 @@ function addPaper(info) {
       console.log('Paper with id: ' + paper.id + ' already exists');
     }
   });
+}
+
+function now() {
+  let now = new Date(Date.now());
+  return now.valueOf()/1000/60/60/24;
 }
 
 function slog(msg) {
