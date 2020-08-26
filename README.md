@@ -2,16 +2,29 @@
 
 My memory for papers is terrible
 
-## Pick a code
+## Login
 
-Choose some code that you can remember. Careful because if you can't remember papers you won't remember the code you pick.
+Create a login/password or register a new one. Your papers are unique to your login name.
 
 ## Add a paper
 
-You can add papers to Leitner and it will store them in a database according to your code.
+You can add papers to Leitner and it will store them in a database according to your code. Papers you add are put on a 12 hour timer.
+
+## Bins
+
+Each time you revisit Leitner it loads papers whose timers have elapsed, and asks you to do a matching task against two other random "blurbs". If you match correctly the timer increases, if you get it wrong the timer decreases. The timers are:
+
+0.5 days
+1 days
+4 days
+16 days
+32 days (when you have >32 cards)
+64 days (when you have >64 cards)
 
 ## Re-visit
 
-Every time you revisit Leitner it will load up the papers you stored and ask you to do a matching task (match the summary to the paper). If you get it right it doubles the amount of time before it shows you that particular paper again.
+Visit Leitner every morning before you go to work and memorize those papers!
 
-## Profit!
+## Info
+
+Inspired by a post from @ncasenmare about the flashcard method
