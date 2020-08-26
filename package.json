@@ -5,7 +5,7 @@
   "main": "leitner.js",
   "dependencies": {
     "express": "^4.16.3",
-    "mongoose": "^5.2.15",
+    "mongoose": "^5.7.5",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {},
